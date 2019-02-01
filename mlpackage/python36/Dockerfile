@@ -20,7 +20,9 @@ RUN cd /usr/bin && \
 	ln -sfn pygettext3.6 pygettext3 && \
 	ln -sfn pygettext3 pygettext
 
-RUN apt-get install -y curl
+RUN apt-get install -y \
+	curl \
+	libgomp1
 
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && \
 	python get-pip.py
