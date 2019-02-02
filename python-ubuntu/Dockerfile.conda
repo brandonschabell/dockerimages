@@ -1,0 +1,19 @@
+FROM brandonschabell/buildpack-deps-ubuntu:18.04
+
+# Install conda
+ADD https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh /miniconda.sh
+RUN sh /miniconda.sh -b -p /conda && \
+	/conda/bin/conda update -n base conda
+
+ENV PATH=${PATH}:/conda/bin
+
+SHELL ["/bin/bash", "-c"]
+
+ARG PYTHON_VERSION=3.6.8
+
+RUN conda create -n pyenv python=${PYTHON_VERSION}
+RUN ln -s /conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
+	echo ". /conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
+	echo "conda activate pyenv" >> ~/.bashrc
+
+CMD [ "/bin/bash" ]

@@ -8,3 +8,4 @@ hyperopt==0.1.1
 matplotlib==3.0.2
 tqdm==4.29.0
 Pillow==5.4.1
+keras==2.2.4
